@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* The Unheard Stories Design System - Empathetic and calming colors for emotional wellbeing */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core therapeutic palette */
+    --background: 220 25% 97%;
+    --foreground: 230 15% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card and surface colors */
+    --card: 220 20% 98%;
+    --card-foreground: 230 15% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 20% 98%;
+    --popover-foreground: 230 15% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Calming blue for trust and safety */
+    --primary: 220 85% 55%;
+    --primary-foreground: 220 20% 98%;
+    --primary-soft: 220 60% 92%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm purple for empathy */
+    --secondary: 250 45% 88%;
+    --secondary-foreground: 250 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent - Gentle lavender for comfort */
+    --accent: 240 35% 92%;
+    --accent-foreground: 240 15% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted tones for subtle elements */
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Emotional color palette */
+    --emotion-joy: 45 100% 70%;
+    --emotion-sadness: 210 80% 65%;
+    --emotion-hope: 150 60% 60%;
+    --emotion-fear: 25 85% 65%;
+    --emotion-love: 340 75% 75%;
+    --emotion-anger: 0 70% 60%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Gradients for warmth */
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 55%), hsl(250 75% 65%));
+    --gradient-card: linear-gradient(145deg, hsl(220 20% 98%), hsl(240 15% 96%));
+    --gradient-accent: linear-gradient(120deg, hsl(240 35% 92%), hsl(220 40% 88%));
 
-    --radius: 0.5rem;
+    /* Interactive states */
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 220 20% 98%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 94%;
+    --ring: 220 85% 55%;
+
+    --radius: 1rem;
+
+    /* Smooth transitions for emotional comfort */
+    --transition-gentle: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* Shadows for depth */
+    --shadow-soft: 0 4px 20px -4px hsl(220 20% 20% / 0.1);
+    --shadow-card: 0 8px 40px -8px hsl(220 20% 20% / 0.15);
 
     --sidebar-background: 0 0% 98%;
 
