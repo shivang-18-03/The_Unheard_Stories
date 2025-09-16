@@ -248,7 +248,9 @@ const Asteria = () => {
                     type="button"
                     onClick={toggleListening}
                     variant={isListening ? "destructive" : "secondary"}
-                    className="transition-all duration-gentle hover:scale-105"
+                    className={`transition-all duration-gentle hover:scale-105 ${
+                      isListening ? "animate-pulse bg-red-500 hover:bg-red-600" : ""
+                    }`}
                     title={isListening ? "Stop voice input" : "Start voice input"}
                     aria-label={isListening ? "Stop voice input" : "Start voice input"}
                   >

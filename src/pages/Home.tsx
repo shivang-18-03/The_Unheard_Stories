@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import EmotionFilter from "@/components/EmotionFilter";
 import StoryCard from "@/components/StoryCard";
+import StoryModal from "@/components/StoryModal";
 import { ArrowRight } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import storyHope from "@/assets/story-hope.jpg";
@@ -38,8 +40,10 @@ const sampleStories = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedStory, setSelectedStory] = useState<typeof sampleStories[0] | null>(null);
 
   const handleEmotionToggle = (emotion: string) => {
     setSelectedEmotions(prev => 
@@ -47,6 +51,10 @@ const Home = () => {
         ? prev.filter(e => e !== emotion)
         : [...prev, emotion]
     );
+  };
+
+  const handleStoryClick = (story: typeof sampleStories[0]) => {
+    setSelectedStory(story);
   };
 
   const filteredStories = sampleStories.filter(story => {
@@ -80,6 +88,7 @@ const Home = () => {
           <Button 
             size="lg" 
             className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-soft hover:shadow-card transition-all duration-gentle hover:scale-105"
+            onClick={() => navigate("/stories")}
           >
             Explore Stories <ArrowRight className="ml-2" size={20} />
           </Button>
@@ -112,9 +121,20 @@ const Home = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredStories.map((story) => (
-            <StoryCard key={story.id} {...story} />
+            <div key={story.id} onClick={() => handleStoryClick(story)} className="cursor-pointer">
+              <StoryCard {...story} />
+            </div>
           ))}
         </div>
+
+        {/* Story Modal */}
+        {selectedStory && (
+          <StoryModal
+            story={selectedStory}
+            isOpen={!!selectedStory}
+            onClose={() => setSelectedStory(null)}
+          />
+        )}
       </section>
     </div>
   );
