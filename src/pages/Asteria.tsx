@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Send, Settings, Heart, Sparkles } from "lucide-react";
+import { Send, Settings, Heart, Sparkles, Mic, MicOff } from "lucide-react";
 import asteriaImage from "@/assets/asteria-ai.jpg";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: number;
@@ -28,6 +29,69 @@ const Asteria = () => {
   const [aiName, setAiName] = useState("Asteria");
   const [voiceType, setVoiceType] = useState("female");
   const [showSettings, setShowSettings] = useState(false);
+
+  // Voice input using Web Speech API
+  const { toast } = useToast();
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
+
+  const startListening = () => {
+    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SR) {
+      toast({
+        title: "Voice input not supported",
+        description: "Your browser doesn't support speech recognition.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const recognition = new SR();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = true;
+
+    recognition.onresult = (event: any) => {
+      let transcript = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setInputMessage((prev) => (prev ? prev + " " : "") + transcript.trim());
+    };
+
+    recognition.onerror = () => {
+      toast({
+        title: "Voice input error",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognitionRef.current = recognition;
+    recognition.start();
+    setIsListening(true);
+  };
+
+  const stopListening = () => {
+    recognitionRef.current?.stop?.();
+    setIsListening(false);
+  };
+
+  const toggleListening = () => {
+    if (isListening) stopListening();
+    else startListening();
+  };
+
+  useEffect(() => {
+    return () => {
+      recognitionRef.current?.stop?.();
+    };
+  }, []);
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
@@ -178,8 +242,18 @@ const Asteria = () => {
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Share what's on your mind..."
-                    className="flex-1 min-h-[60px] bg-background/50 border-border/50 resize-none"
+                    className={`flex-1 min-h-[60px] bg-background/50 border-border/50 resize-none ${isListening ? "ring-2 ring-primary" : ""}`}
                   />
+                  <Button
+                    type="button"
+                    onClick={toggleListening}
+                    variant={isListening ? "destructive" : "secondary"}
+                    className="transition-all duration-gentle hover:scale-105"
+                    title={isListening ? "Stop voice input" : "Start voice input"}
+                    aria-label={isListening ? "Stop voice input" : "Start voice input"}
+                  >
+                    {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+                  </Button>
                   <Button 
                     onClick={handleSendMessage}
                     disabled={!inputMessage.trim()}
