@@ -247,14 +247,18 @@ const Asteria = () => {
                   <Button
                     type="button"
                     onClick={toggleListening}
-                    variant={isListening ? "destructive" : "secondary"}
-                    className={`transition-all duration-gentle hover:scale-105 ${
-                      isListening ? "animate-pulse bg-red-500 hover:bg-red-600" : ""
-                    }`}
+                    variant="secondary"
+                    className={`relative transition-all duration-gentle hover:scale-105 ${isListening ? "ring-2 ring-primary/60" : ""}`}
                     title={isListening ? "Stop voice input" : "Start voice input"}
                     aria-label={isListening ? "Stop voice input" : "Start voice input"}
                   >
                     {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+                    {isListening && (
+                      <span
+                        className="ml-2 h-2 w-2 rounded-full bg-primary pulse"
+                        aria-hidden="true"
+                      />
+                    )}
                   </Button>
                   <Button 
                     onClick={handleSendMessage}
