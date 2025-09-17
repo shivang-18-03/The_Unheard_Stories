@@ -137,7 +137,7 @@ const Asteria = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/10">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -157,7 +157,7 @@ const Asteria = () => {
             </Badge>
             <Badge variant="secondary" className="bg-primary-soft text-primary">
               <Sparkles size={14} className="mr-1" />
-              {voiceType === "female" ? "Female" : "Male"} Voice
+              AI Companion
             </Badge>
           </div>
         </div>
@@ -165,7 +165,7 @@ const Asteria = () => {
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Settings Panel */}
           <div className="lg:col-span-1">
-            <Card className="bg-gradient-card border-border/50 shadow-card">
+            <Card className="bg-gradient-to-b from-card/90 to-card/70 backdrop-blur-md border-border/30 shadow-elegant">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Settings size={20} />
@@ -180,22 +180,8 @@ const Asteria = () => {
                   <Input
                     value={aiName}
                     onChange={(e) => setAiName(e.target.value)}
-                    className="bg-background/50 border-border/50"
+                    className="bg-background/80 backdrop-blur-sm border-border/50 focus:ring-2 focus:ring-primary/50"
                   />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Voice Type
-                  </label>
-                  <Select value={voiceType} onValueChange={setVoiceType}>
-                    <SelectTrigger className="bg-background/50 border-border/50">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="female">Female Voice</SelectItem>
-                      <SelectItem value="male">Male Voice</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </div>
               </CardContent>
             </Card>
@@ -203,13 +189,13 @@ const Asteria = () => {
 
           {/* Chat Interface */}
           <div className="lg:col-span-3">
-            <Card className="bg-gradient-card border-border/50 shadow-card h-[600px] flex flex-col">
+            <Card className="bg-gradient-to-b from-card/90 to-card/70 backdrop-blur-md border-border/30 shadow-elegant h-[600px] flex flex-col">
               <CardHeader className="pb-4">
                 <CardTitle>Chat with {aiName}</CardTitle>
               </CardHeader>
               
               {/* Messages */}
-              <CardContent className="flex-1 overflow-y-auto space-y-4 mb-4">
+              <CardContent className="flex-1 overflow-y-auto space-y-4 mb-4 bg-gradient-to-b from-background/20 to-background/40 backdrop-blur-sm">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -235,20 +221,20 @@ const Asteria = () => {
               </CardContent>
 
               {/* Input */}
-              <div className="p-4 border-t border-border/50">
-                <div className="flex gap-2">
+              <div className="p-4 border-t border-border/30 bg-gradient-to-r from-card/80 to-card/60 backdrop-blur-sm">
+                <div className="flex gap-3">
                   <Textarea
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Share what's on your mind..."
-                    className={`flex-1 min-h-[60px] bg-background/50 border-border/50 resize-none ${isListening ? "ring-2 ring-primary" : ""}`}
+                    className={`flex-1 min-h-[60px] bg-background/80 backdrop-blur-sm border-border/50 resize-none focus:ring-2 focus:ring-primary/50 transition-all duration-gentle ${isListening ? "ring-2 ring-primary" : ""}`}
                   />
                   <Button
                     type="button"
                     onClick={toggleListening}
                     variant="secondary"
-                    className={`relative transition-all duration-gentle hover:scale-105 ${isListening ? "ring-2 ring-primary/60" : ""}`}
+                    className={`relative transition-all duration-gentle hover:scale-105 bg-background/80 backdrop-blur-sm ${isListening ? "ring-2 ring-primary/60" : ""}`}
                     title={isListening ? "Stop voice input" : "Start voice input"}
                     aria-label={isListening ? "Stop voice input" : "Start voice input"}
                   >
@@ -263,7 +249,7 @@ const Asteria = () => {
                   <Button 
                     onClick={handleSendMessage}
                     disabled={!inputMessage.trim()}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-gentle hover:scale-105"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-elegant transition-all duration-gentle hover:scale-105"
                   >
                     <Send size={20} />
                   </Button>

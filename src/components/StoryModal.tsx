@@ -33,19 +33,20 @@ const getEmotionColor = (emotion: string) => {
 const StoryModal = ({ story, isOpen, onClose }: StoryModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-card border-border/50">
+      <DialogContent className="max-w-[95vw] w-full max-h-[95vh] h-full overflow-y-auto bg-gradient-card border-border/50 p-0">
+        <div className="p-6">
         <DialogHeader className="space-y-4">
           <div className="flex items-start justify-between">
-            <DialogTitle className="text-2xl font-bold text-foreground leading-tight pr-8">
+            <DialogTitle className="text-3xl font-bold text-foreground leading-tight pr-8">
               {story.title}
             </DialogTitle>
             <Button
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground fixed top-4 right-4 z-50 bg-background/80 backdrop-blur-sm"
             >
-              <X size={20} />
+              <X size={24} />
             </Button>
           </div>
           
@@ -88,6 +89,7 @@ const StoryModal = ({ story, isOpen, onClose }: StoryModalProps) => {
               {story.content}
             </p>
           </div>
+        </div>
         </div>
       </DialogContent>
     </Dialog>
