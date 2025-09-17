@@ -137,8 +137,9 @@ const Asteria = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-soft/20 via-accent/10 to-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-background relative">
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-indigo-500/10 to-pink-500/10" />
+      <div className="relative container mx-auto px-4 py-8 z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden shadow-card">

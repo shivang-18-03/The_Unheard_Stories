@@ -98,8 +98,9 @@ const PostStory = () => {
   const wordCount = story.split(" ").filter(word => word.length > 0).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-accent/30 via-primary-soft/20 to-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-background relative">
+      <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/10 via-green-500/10 to-blue-500/10" />
+      <div className="relative container mx-auto px-4 py-8 z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">

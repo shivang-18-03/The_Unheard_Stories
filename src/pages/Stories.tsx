@@ -93,8 +93,9 @@ const Stories = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-soft/40 via-accent/30 to-background relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-indigo-500/10" />
+      <div className="relative container mx-auto px-4 py-8 z-10">
         {/* Header */}
         <div className="mb-8">
           <Button 
