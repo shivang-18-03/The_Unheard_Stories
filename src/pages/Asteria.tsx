@@ -137,7 +137,7 @@ const Asteria = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/10">
+    <div className="min-h-screen bg-gradient-to-br from-primary-soft/20 via-accent/10 to-background">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">

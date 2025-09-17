@@ -106,35 +106,37 @@ const Home = () => {
       </section>
 
       {/* Stories Section */}
-      <section className="container mx-auto px-4 pb-16">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-2">
-            {filteredStories.length > 0 ? "Recommended Stories" : "No Stories Found"}
-          </h2>
-          <p className="text-muted-foreground">
-            {filteredStories.length > 0 
-              ? "Stories that resonate with hearts and heal souls"
-              : "Try adjusting your filters to find more stories"
-            }
-          </p>
-        </div>
+      <section className="bg-gradient-to-br from-primary-soft/30 via-accent/20 to-background py-16">
+        <div className="container mx-auto px-4">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              {filteredStories.length > 0 ? "Recommended Stories" : "No Stories Found"}
+            </h2>
+            <p className="text-muted-foreground">
+              {filteredStories.length > 0 
+                ? "Stories that resonate with hearts and heal souls"
+                : "Try adjusting your filters to find more stories"
+              }
+            </p>
+          </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredStories.map((story) => (
-            <div key={story.id} onClick={() => handleStoryClick(story)} className="cursor-pointer">
-              <StoryCard {...story} />
-            </div>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredStories.map((story) => (
+              <div key={story.id} onClick={() => handleStoryClick(story)} className="cursor-pointer">
+                <StoryCard {...story} />
+              </div>
+            ))}
+          </div>
 
-        {/* Story Modal */}
-        {selectedStory && (
-          <StoryModal
-            story={selectedStory}
-            isOpen={!!selectedStory}
-            onClose={() => setSelectedStory(null)}
-          />
-        )}
+          {/* Story Modal */}
+          {selectedStory && (
+            <StoryModal
+              story={selectedStory}
+              isOpen={!!selectedStory}
+              onClose={() => setSelectedStory(null)}
+            />
+          )}
+        </div>
       </section>
     </div>
   );

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
-import { PenTool, Heart, Upload } from "lucide-react";
+import { PenTool, Heart, Upload, ImagePlus, X } from "lucide-react";
 
 const emotions = [
   { name: "Hope", color: "bg-emotion-hope text-white" },
@@ -22,6 +22,9 @@ const PostStory = () => {
   const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
   const [authorName, setAuthorName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [coverImage, setCoverImage] = useState<File | null>(null);
+  const [coverImagePreview, setCoverImagePreview] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleEmotionToggle = (emotion: string) => {
     setSelectedEmotions(prev => 
@@ -29,6 +32,35 @@ const PostStory = () => {
         ? prev.filter(e => e !== emotion)
         : [...prev, emotion]
     );
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        toast({
+          title: "Image too large",
+          description: "Please select an image smaller than 5MB.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      setCoverImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setCoverImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeCoverImage = () => {
+    setCoverImage(null);
+    setCoverImagePreview("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,6 +89,8 @@ const PostStory = () => {
       setStory("");
       setSelectedEmotions([]);
       setAuthorName("");
+      setCoverImage(null);
+      setCoverImagePreview("");
       setIsSubmitting(false);
     }, 2000);
   };
@@ -64,7 +98,7 @@ const PostStory = () => {
   const wordCount = story.split(" ").filter(word => word.length > 0).length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-accent/30 via-primary-soft/20 to-background">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -118,6 +152,52 @@ const PostStory = () => {
                     className="bg-background/50 border-border/50"
                     required
                   />
+                </div>
+
+                {/* Cover Image Upload */}
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-2 block">
+                    Cover Image (Optional)
+                  </label>
+                  <div className="space-y-4">
+                    {!coverImagePreview ? (
+                      <div 
+                        onClick={() => fileInputRef.current?.click()}
+                        className="border-2 border-dashed border-border/50 rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 hover:bg-primary-soft/10 transition-all duration-gentle"
+                      >
+                        <ImagePlus className="mx-auto mb-4 text-muted-foreground" size={48} />
+                        <p className="text-muted-foreground mb-2">Click to upload a cover image</p>
+                        <p className="text-xs text-muted-foreground">PNG, JPG up to 5MB</p>
+                      </div>
+                    ) : (
+                      <div className="relative">
+                        <img 
+                          src={coverImagePreview} 
+                          alt="Cover preview" 
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          onClick={removeCoverImage}
+                          className="absolute top-2 right-2"
+                        >
+                          <X size={16} />
+                        </Button>
+                      </div>
+                    )}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Add a meaningful image that represents your story
+                  </p>
                 </div>
 
                 {/* Emotions */}
