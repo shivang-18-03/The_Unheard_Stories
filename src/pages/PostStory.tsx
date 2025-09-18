@@ -117,10 +117,10 @@ const PostStory = () => {
           </div>
           
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-transparent">
               Share Your Story
             </h1>
-            <p className="text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-foreground max-w-3xl mx-auto leading-relaxed">
               Your story matters. Share your journey and help others feel less alone in their struggles.
             </p>
           </div>
@@ -128,13 +128,13 @@ const PostStory = () => {
 
         <div className="max-w-5xl mx-auto">
           <Card className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 border-b border-white/10 py-8">
-              <CardTitle className="flex items-center gap-3 text-2xl text-white">
-                <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl">
-                  <Heart size={28} />
+            <CardHeader className="bg-primary-soft/30 border-b border-border/30 py-8">
+              <CardTitle className="flex items-center gap-3 text-2xl text-foreground">
+                <div className="p-3 bg-primary rounded-xl">
+                  <Heart size={28} className="text-primary-foreground" />
                 </div>
                 Tell Us Your Story
-                <Badge variant="outline" className="ml-auto border-orange-500/50 text-orange-400 bg-orange-500/10">
+                <Badge variant="outline" className="ml-auto border-primary/50 text-primary bg-primary-soft">
                   Sharing Space
                 </Badge>
               </CardTitle>
@@ -143,60 +143,60 @@ const PostStory = () => {
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Author Name Section */}
-                <div className="bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-                  <label className="text-lg font-semibold text-white mb-3 block flex items-center gap-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                <div className="bg-card/50 p-6 rounded-xl border border-border/30">
+                  <label className="text-lg font-semibold text-foreground mb-3 block flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                     Your Name (Optional)
                   </label>
                   <Input
                     value={authorName}
                     onChange={(e) => setAuthorName(e.target.value)}
                     placeholder="Anonymous (leave blank for anonymous posting)"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 h-12"
+                    className="bg-background/80 border-border/50 focus:ring-2 focus:ring-primary/50 h-12"
                   />
-                  <p className="text-sm text-muted-foreground/70 mt-2 flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground mt-2 flex items-center gap-2">
                     <div className="w-1 h-1 bg-current rounded-full" />
                     Leave blank to post anonymously
                   </p>
                 </div>
 
                 {/* Story Title Section */}
-                <div className="bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-                  <label className="text-lg font-semibold text-white mb-3 block flex items-center gap-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                <div className="bg-card/50 p-6 rounded-xl border border-border/30">
+                  <label className="text-lg font-semibold text-foreground mb-3 block flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                     Story Title *
                   </label>
                   <Input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Give your story a meaningful title..."
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 h-12"
+                    className="bg-background/80 border-border/50 focus:ring-2 focus:ring-primary/50 h-12"
                     required
                   />
                 </div>
 
                 {/* Cover Image Upload Section */}
-                <div className="bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-                  <label className="text-lg font-semibold text-white mb-3 block flex items-center gap-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                <div className="bg-card/50 p-6 rounded-xl border border-border/30">
+                  <label className="text-lg font-semibold text-foreground mb-3 block flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                     Cover Image (Optional)
                   </label>
                   <div className="space-y-4">
                     {!coverImagePreview ? (
                       <div 
                         onClick={() => fileInputRef.current?.click()}
-                        className="border-2 border-dashed border-white/30 rounded-xl p-10 text-center cursor-pointer hover:border-orange-500/50 hover:bg-orange-500/10 transition-all duration-300 bg-white/5"
+                        className="border-2 border-dashed border-border/50 rounded-xl p-10 text-center cursor-pointer hover:border-primary/50 hover:bg-primary-soft/20 transition-all duration-300 bg-background/30"
                       >
-                        <ImagePlus className="mx-auto mb-4 text-orange-400" size={56} />
-                        <p className="text-white mb-2 text-lg">Click to upload a cover image</p>
-                        <p className="text-sm text-muted-foreground/70">PNG, JPG up to 5MB • Recommended: 1200x800px</p>
+                        <ImagePlus className="mx-auto mb-4 text-primary" size={56} />
+                        <p className="text-foreground mb-2 text-lg">Click to upload a cover image</p>
+                        <p className="text-sm text-muted-foreground">PNG, JPG up to 5MB • Recommended: 1200x800px</p>
                       </div>
                     ) : (
                       <div className="relative">
                         <img 
                           src={coverImagePreview} 
                           alt="Cover preview" 
-                          className="w-full h-60 object-cover rounded-xl border border-white/20"
+                          className="w-full h-60 object-cover rounded-xl border border-border/30"
                         />
                         <Button
                           type="button"
@@ -217,16 +217,16 @@ const PostStory = () => {
                       className="hidden"
                     />
                   </div>
-                  <p className="text-sm text-muted-foreground/70 mt-3 flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground mt-3 flex items-center gap-2">
                     <div className="w-1 h-1 bg-current rounded-full" />
                     Add a meaningful image that represents your story
                   </p>
                 </div>
 
                 {/* Emotions Section */}
-                <div className="bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-                  <label className="text-lg font-semibold text-white mb-4 block flex items-center gap-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                <div className="bg-card/50 p-6 rounded-xl border border-border/30">
+                  <label className="text-lg font-semibold text-foreground mb-4 block flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                     What emotions does your story contain? *
                   </label>
                   <div className="flex flex-wrap gap-3">
@@ -237,7 +237,7 @@ const PostStory = () => {
                         className={`cursor-pointer transition-all duration-300 hover:scale-110 text-base px-4 py-2 ${
                           selectedEmotions.includes(emotion.name) 
                             ? emotion.color + " shadow-lg" 
-                            : "hover:bg-orange-500/20 hover:border-orange-500/50 border-white/30 text-white bg-white/5"
+                            : "hover:bg-primary-soft hover:border-primary border-border/50 bg-background/50"
                         }`}
                         onClick={() => handleEmotionToggle(emotion.name)}
                       >
@@ -245,31 +245,31 @@ const PostStory = () => {
                       </Badge>
                     ))}
                   </div>
-                  <p className="text-sm text-muted-foreground/70 mt-3 flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground mt-3 flex items-center gap-2">
                     <div className="w-1 h-1 bg-current rounded-full" />
                     Select all emotions that apply to your story
                   </p>
                 </div>
 
                 {/* Story Content Section */}
-                <div className="bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-                  <label className="text-lg font-semibold text-white mb-4 block flex items-center gap-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                <div className="bg-card/50 p-6 rounded-xl border border-border/30">
+                  <label className="text-lg font-semibold text-foreground mb-4 block flex items-center gap-2">
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                     Your Story *
                   </label>
                   <Textarea
                     value={story}
                     onChange={(e) => setStory(e.target.value)}
                     placeholder="Share your experience, journey, or message of hope. Your words might be exactly what someone else needs to hear today..."
-                    className="min-h-[320px] bg-white/10 border-white/20 text-white placeholder:text-white/50 resize-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 text-base leading-relaxed"
+                    className="min-h-[320px] bg-background/80 border-border/50 resize-none focus:ring-2 focus:ring-primary/50 text-base leading-relaxed"
                     required
                   />
-                  <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                    <p className="text-sm text-muted-foreground/70 flex items-center gap-2">
+                  <div className="flex justify-between items-center mt-4 pt-4 border-t border-border/30">
+                    <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <div className="w-1 h-1 bg-current rounded-full" />
                       Write from your heart. There's no word limit.
                     </p>
-                    <p className="text-sm text-orange-400 font-medium">
+                    <p className="text-sm text-primary font-medium">
                       {wordCount} words
                     </p>
                   </div>
@@ -281,7 +281,7 @@ const PostStory = () => {
                     type="submit"
                     disabled={isSubmitting || !title.trim() || !story.trim() || selectedEmotions.length === 0}
                     size="lg"
-                    className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-xl shadow-orange-500/25 transition-all duration-300 hover:scale-105 px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl transition-all duration-300 hover:scale-105 px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -301,30 +301,30 @@ const PostStory = () => {
           </Card>
 
           {/* Guidelines */}
-          <Card className="mt-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-b border-white/10">
-              <CardTitle className="text-xl text-white flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg">
-                  <Heart size={20} />
+          <Card className="mt-8 bg-card/50 backdrop-blur-xl border-border/30 shadow-xl">
+            <CardHeader className="bg-primary-soft/30 border-b border-border/30">
+              <CardTitle className="text-xl text-foreground flex items-center gap-3">
+                <div className="p-2 bg-primary rounded-lg">
+                  <Heart size={20} className="text-primary-foreground" />
                 </div>
                 Community Guidelines
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6 text-white/80 space-y-3">
+            <CardContent className="p-6 text-foreground space-y-3">
               <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                 <p>Share your authentic experience with kindness and respect</p>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                 <p>Focus on your personal journey and avoid giving direct advice</p>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                 <p>Respect others' privacy and avoid sharing identifying details</p>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                 <p>Remember that your story could inspire and help someone in need</p>
               </div>
             </CardContent>

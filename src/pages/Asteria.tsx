@@ -156,19 +156,19 @@ const Asteria = () => {
           </div>
           
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-transparent">
               Meet {aiName}
             </h1>
-            <p className="text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-foreground max-w-3xl mx-auto leading-relaxed">
               Your personal AI companion for emotional support. Share your feelings in a safe, judgment-free space.
             </p>
             
             <div className="flex items-center justify-center gap-3 mt-6">
-              <Badge variant="secondary" className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-200 border-purple-500/30 px-4 py-2">
+              <Badge variant="secondary" className="bg-primary-soft text-primary px-4 py-2">
                 <Heart size={16} className="mr-2" />
                 Empathetic AI
               </Badge>
-              <Badge variant="secondary" className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-200 border-blue-500/30 px-4 py-2">
+              <Badge variant="secondary" className="bg-primary-soft text-primary px-4 py-2">
                 <Sparkles size={16} className="mr-2" />
                 24/7 Support
               </Badge>
@@ -181,28 +181,28 @@ const Asteria = () => {
           <div className="lg:col-span-1">
             <Card className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-2xl">
               <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-3 text-xl text-white">
-                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg">
-                    <Settings size={20} />
+                <CardTitle className="flex items-center gap-3 text-xl text-foreground">
+                  <div className="p-2 bg-primary rounded-lg">
+                    <Settings size={20} className="text-primary-foreground" />
                   </div>
                   Customize
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-3">
-                  <label className="text-sm font-semibold text-foreground/90 block">
+                  <label className="text-sm font-semibold text-foreground block">
                     AI Assistant Name
                   </label>
                   <Input
                     value={aiName}
                     onChange={(e) => setAiName(e.target.value)}
-                    className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    className="bg-background/80 backdrop-blur-sm border-border/50 focus:ring-2 focus:ring-primary/50"
                     placeholder="Enter AI name..."
                   />
                 </div>
                 
-                <div className="pt-4 border-t border-white/10">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
+                <div className="pt-4 border-t border-border/30">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                     AI is online and ready to help
                   </div>
@@ -214,18 +214,18 @@ const Asteria = () => {
           {/* Redesigned Chat Interface */}
           <div className="lg:col-span-4">
             <Card className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-2xl h-[700px] flex flex-col overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-b border-white/10 py-6">
-                <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse" />
+              <CardHeader className="bg-primary-soft/30 border-b border-border/30 py-6">
+                <CardTitle className="text-2xl text-foreground flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
                   Chat with {aiName}
-                  <Badge variant="outline" className="ml-auto border-green-500/50 text-green-400 bg-green-500/10">
+                  <Badge variant="outline" className="ml-auto border-green-500/50 text-green-600 bg-green-50">
                     Active
                   </Badge>
                 </CardTitle>
               </CardHeader>
               
               {/* Redesigned Messages */}
-              <CardContent className="flex-1 overflow-y-auto space-y-6 p-6 bg-gradient-to-b from-black/20 to-black/40">
+              <CardContent className="flex-1 overflow-y-auto space-y-6 p-6 bg-gradient-to-b from-background/50 to-background/80">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -234,8 +234,8 @@ const Asteria = () => {
                     <div
                       className={`max-w-[85%] p-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] ${
                         message.isUser
-                          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25"
-                          : "bg-gradient-to-r from-white/10 to-white/5 text-white border border-white/20 backdrop-blur-sm"
+                          ? "bg-primary text-primary-foreground shadow-lg"
+                          : "bg-secondary text-secondary-foreground border border-border/30"
                       }`}
                     >
                       <p className="leading-relaxed text-sm">{message.text}</p>
@@ -252,7 +252,7 @@ const Asteria = () => {
               </CardContent>
 
               {/* Redesigned Input */}
-              <div className="p-6 border-t border-white/10 bg-gradient-to-r from-black/20 to-black/30 backdrop-blur-sm">
+              <div className="p-6 border-t border-border/30 bg-card/50 backdrop-blur-sm">
                 <div className="flex gap-4 items-end">
                   <div className="flex-1">
                     <Textarea
@@ -260,7 +260,7 @@ const Asteria = () => {
                       onChange={(e) => setInputMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Share what's on your mind..."
-                      className={`min-h-[70px] bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 resize-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 rounded-xl transition-all duration-300 ${isListening ? "ring-2 ring-purple-500/50" : ""}`}
+                      className={`min-h-[70px] bg-background/80 backdrop-blur-sm border-border/50 resize-none focus:ring-2 focus:ring-primary/50 rounded-xl transition-all duration-300 ${isListening ? "ring-2 ring-primary/50" : ""}`}
                     />
                   </div>
                   <div className="flex gap-3">
@@ -269,19 +269,19 @@ const Asteria = () => {
                       onClick={toggleListening}
                       variant="secondary"
                       size="lg"
-                      className={`bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 rounded-xl ${isListening ? "ring-2 ring-purple-500/50 bg-purple-500/20" : ""}`}
+                      className={`bg-background/80 hover:bg-background border-border/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 rounded-xl ${isListening ? "ring-2 ring-primary/50 bg-primary/20" : ""}`}
                       title={isListening ? "Stop voice input" : "Start voice input"}
                     >
                       {isListening ? <MicOff size={22} /> : <Mic size={22} />}
                       {isListening && (
-                        <span className="ml-2 h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                        <span className="ml-2 h-2 w-2 rounded-full bg-primary animate-pulse" />
                       )}
                     </Button>
                     <Button 
                       onClick={handleSendMessage}
                       disabled={!inputMessage.trim()}
                       size="lg"
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transition-all duration-300 hover:scale-105 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send size={22} />
                     </Button>
