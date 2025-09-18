@@ -137,80 +137,110 @@ const Asteria = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-background relative">
-      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-indigo-500/10 to-pink-500/10" />
-      <div className="relative container mx-auto px-4 py-8 z-10">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden shadow-card">
-            <img src={asteriaImage} alt="Asteria AI" className="w-full h-full object-cover" />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900/20 via-purple-900/15 to-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-blue-900/10 to-transparent" />
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      
+      {/* Floating elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      
+      <div className="relative container mx-auto px-4 py-12 z-10">
+        {/* Redesigned Header */}
+        <div className="text-center mb-12">
+          <div className="relative inline-block mb-8">
+            <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-white/10 backdrop-blur-sm">
+              <img src={asteriaImage} alt="Asteria AI" className="w-full h-full object-cover" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-background animate-pulse" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-2">
-            Meet {aiName}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your personal AI companion for emotional support. Share your feelings in a safe, judgment-free space.
-          </p>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <Badge variant="secondary" className="bg-primary-soft text-primary">
-              <Heart size={14} className="mr-1" />
-              Empathetic
-            </Badge>
-            <Badge variant="secondary" className="bg-primary-soft text-primary">
-              <Sparkles size={14} className="mr-1" />
-              AI Companion
-            </Badge>
+          
+          <div className="space-y-4">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+              Meet {aiName}
+            </h1>
+            <p className="text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
+              Your personal AI companion for emotional support. Share your feelings in a safe, judgment-free space.
+            </p>
+            
+            <div className="flex items-center justify-center gap-3 mt-6">
+              <Badge variant="secondary" className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-200 border-purple-500/30 px-4 py-2">
+                <Heart size={16} className="mr-2" />
+                Empathetic AI
+              </Badge>
+              <Badge variant="secondary" className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-200 border-blue-500/30 px-4 py-2">
+                <Sparkles size={16} className="mr-2" />
+                24/7 Support
+              </Badge>
+            </div>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Settings Panel */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Redesigned Settings Panel */}
           <div className="lg:col-span-1">
-            <Card className="bg-gradient-to-b from-card/90 to-card/70 backdrop-blur-md border-border/30 shadow-elegant">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Settings size={20} />
+            <Card className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-2xl">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-xl text-white">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg">
+                    <Settings size={20} />
+                  </div>
                   Customize
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    AI Name
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold text-foreground/90 block">
+                    AI Assistant Name
                   </label>
                   <Input
                     value={aiName}
                     onChange={(e) => setAiName(e.target.value)}
-                    className="bg-background/80 backdrop-blur-sm border-border/50 focus:ring-2 focus:ring-primary/50"
+                    className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
+                    placeholder="Enter AI name..."
                   />
+                </div>
+                
+                <div className="pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    AI is online and ready to help
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Chat Interface */}
-          <div className="lg:col-span-3">
-            <Card className="bg-gradient-to-b from-card/90 to-card/70 backdrop-blur-md border-border/30 shadow-elegant h-[600px] flex flex-col">
-              <CardHeader className="pb-4">
-                <CardTitle>Chat with {aiName}</CardTitle>
+          {/* Redesigned Chat Interface */}
+          <div className="lg:col-span-4">
+            <Card className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl border-white/20 shadow-2xl h-[700px] flex flex-col overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-b border-white/10 py-6">
+                <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse" />
+                  Chat with {aiName}
+                  <Badge variant="outline" className="ml-auto border-green-500/50 text-green-400 bg-green-500/10">
+                    Active
+                  </Badge>
+                </CardTitle>
               </CardHeader>
               
-              {/* Messages */}
-              <CardContent className="flex-1 overflow-y-auto space-y-4 mb-4 bg-gradient-to-b from-background/20 to-background/40 backdrop-blur-sm">
+              {/* Redesigned Messages */}
+              <CardContent className="flex-1 overflow-y-auto space-y-6 p-6 bg-gradient-to-b from-black/20 to-black/40">
                 {messages.map((message) => (
                   <div
                     key={message.id}
                     className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[80%] p-4 rounded-xl transition-all duration-gentle ${
+                      className={`max-w-[85%] p-5 rounded-2xl transition-all duration-300 hover:scale-[1.02] ${
                         message.isUser
-                          ? "bg-primary text-primary-foreground shadow-soft"
-                          : "bg-secondary text-secondary-foreground"
+                          ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25"
+                          : "bg-gradient-to-r from-white/10 to-white/5 text-white border border-white/20 backdrop-blur-sm"
                       }`}
                     >
-                      <p className="leading-relaxed">{message.text}</p>
-                      <p className={`text-xs mt-2 opacity-70`}>
+                      <p className="leading-relaxed text-sm">{message.text}</p>
+                      <p className="text-xs mt-3 opacity-70 flex items-center gap-1">
+                        <div className="w-1 h-1 bg-current rounded-full" />
                         {message.timestamp.toLocaleTimeString([], { 
                           hour: "2-digit", 
                           minute: "2-digit" 
@@ -221,39 +251,41 @@ const Asteria = () => {
                 ))}
               </CardContent>
 
-              {/* Input */}
-              <div className="p-4 border-t border-border/30 bg-gradient-to-r from-card/80 to-card/60 backdrop-blur-sm">
-                <div className="flex gap-3">
-                  <Textarea
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Share what's on your mind..."
-                    className={`flex-1 min-h-[60px] bg-background/80 backdrop-blur-sm border-border/50 resize-none focus:ring-2 focus:ring-primary/50 transition-all duration-gentle ${isListening ? "ring-2 ring-primary" : ""}`}
-                  />
-                  <Button
-                    type="button"
-                    onClick={toggleListening}
-                    variant="secondary"
-                    className={`relative transition-all duration-gentle hover:scale-105 bg-background/80 backdrop-blur-sm ${isListening ? "ring-2 ring-primary/60" : ""}`}
-                    title={isListening ? "Stop voice input" : "Start voice input"}
-                    aria-label={isListening ? "Stop voice input" : "Start voice input"}
-                  >
-                    {isListening ? <MicOff size={20} /> : <Mic size={20} />}
-                    {isListening && (
-                      <span
-                        className="ml-2 h-2 w-2 rounded-full bg-primary pulse"
-                        aria-hidden="true"
-                      />
-                    )}
-                  </Button>
-                  <Button 
-                    onClick={handleSendMessage}
-                    disabled={!inputMessage.trim()}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-elegant transition-all duration-gentle hover:scale-105"
-                  >
-                    <Send size={20} />
-                  </Button>
+              {/* Redesigned Input */}
+              <div className="p-6 border-t border-white/10 bg-gradient-to-r from-black/20 to-black/30 backdrop-blur-sm">
+                <div className="flex gap-4 items-end">
+                  <div className="flex-1">
+                    <Textarea
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Share what's on your mind..."
+                      className={`min-h-[70px] bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 resize-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 rounded-xl transition-all duration-300 ${isListening ? "ring-2 ring-purple-500/50" : ""}`}
+                    />
+                  </div>
+                  <div className="flex gap-3">
+                    <Button
+                      type="button"
+                      onClick={toggleListening}
+                      variant="secondary"
+                      size="lg"
+                      className={`bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 rounded-xl ${isListening ? "ring-2 ring-purple-500/50 bg-purple-500/20" : ""}`}
+                      title={isListening ? "Stop voice input" : "Start voice input"}
+                    >
+                      {isListening ? <MicOff size={22} /> : <Mic size={22} />}
+                      {isListening && (
+                        <span className="ml-2 h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                      )}
+                    </Button>
+                    <Button 
+                      onClick={handleSendMessage}
+                      disabled={!inputMessage.trim()}
+                      size="lg"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Send size={22} />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>
